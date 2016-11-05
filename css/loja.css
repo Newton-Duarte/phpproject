@@ -1,0 +1,19 @@
+body {
+  padding-top: 50px;
+}
+
+.principal{
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.principal p {
+  padding: 10px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.sobre img {
+  width: 300px;
+  border-radius: 50%;
+}
