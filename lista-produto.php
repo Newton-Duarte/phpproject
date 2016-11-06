@@ -1,14 +1,7 @@
-<?php 
-  include("cabecalho.php");
-  include("conecta.php");
-  include("banco-produto.php"); ?>
-
-  <?php 
-
-    if(array_key_exists("removido", $_GET) && $_GET["removido"]=='true') { ?>
-      <p class="alert-success">Produto removido!</p>
-    <?php } ?>
-
+<?php
+  require_once("cabecalho.php");
+  require_once("banco-produto.php");
+?>
   <table class="table table-striped table-bordered">
 
     <?php

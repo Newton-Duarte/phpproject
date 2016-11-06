@@ -1,23 +1,26 @@
-<?php include 'cabecalho.php' ?>
+<?php require_once('cabecalho.php');
+      require_once("logica-usuario.php");
+?>
 
 <div class="row">
   <h1>Minha Loja</h1>
 </div>
 
 <div class="row">
-  <?php 
-    if (isset($_COOKIE["usuario_logado"])) {
+  <?php
+    if (usuarioEstaLogado()) {
   ?>
-    <p class="text-success">Você está logado como <?=$_COOKIE["usuario_logado"]?></p>    
+    <p class="text-success">Você está logado como <?=usuarioLogado()?></p>
+    <a href="logout.php">Logout</a>
   <?php
     } else {
   ?>
   <div class="col-md-6 col-md-offset-3">
     <form action="login.php" method="post">
-      
+
       <div class="form-group">
         <input type="email" name="email" class="form-control" placeholder="E-mail">
-      </div>  
+      </div>
 
       <div class="form-group">
         <input type="password" name="senha" class="form-control" placeholder="Senha">
@@ -25,7 +28,7 @@
 
       <div class="form-group">
         <input type="submit" value="Entrar" class="btn btn-lg btn-primary">
-      </div>  
+      </div>
 
     </form>
   </div>
@@ -33,19 +36,5 @@
     }
    ?>
 </div>
-
-<?php if (isset($_GET["login"]) && $_GET["login"]==1) {
-?>
-  <p class="alert-success">Logado com sucesso!</p>
-<?php 
-}
- ?>
-
-<?php if (isset($_GET["login"]) && $_GET["login"]==0) {
-?>
-  <p class="alert-danger">Usuario ou senha invalida!</p>
-<?php 
-}
-?>
 
 <?php include 'rodape.php' ?>

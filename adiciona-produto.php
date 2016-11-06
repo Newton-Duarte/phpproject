@@ -1,7 +1,9 @@
-<?php 
-  include("cabecalho.php");
-  include("conecta.php");
-  include("banco-produto.php");
+<?php
+  require_once("cabecalho.php");
+  require_once("banco-produto.php");
+  require_once("logica-usuario.php");
+
+  verificaUsuario();
 
   $nome = $_POST["nome"];
   $preco = $_POST["preco"];
@@ -16,7 +18,7 @@
 
   if(insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado)){ ?>
     <p class="alert-success">Produto <?= $nome; ?> Preço: <?= $preco; ?> reais, adicionado com sucesso!</p>
-  <?php  } else {   
+  <?php  } else {
       $msg = mysqli_error($conexao);
   ?>
       <p class="alert-danger">Ocorreu um erro! O Produto <?= $nome; ?> não foi adicionado: <?= $msg ?></p>
