@@ -9,14 +9,14 @@
 
   $produto = new Produto();
   $categoria = new Categoria();
-  $categoria = $_POST['categoria_id'];
+  $categoria->id = $_POST['categoria_id'];
 
-  $produto->nome = $_POST["nome"];
-  $produto->preco = $_POST["preco"];
-  $produto->descricao = $_POST["descricao"];
+  $produto->nome = $_POST['nome'];
+  $produto->preco = $_POST['preco'];
+  $produto->descricao = $_POST['descricao'];
   $produto->categoria = $categoria;
 
-  if (array_key_exists('usado', $_POST)) {
+  if(array_key_exists('usado', $_POST)) {
     $produto->usado = "true";
   } else {
     $produto->usado = "false";

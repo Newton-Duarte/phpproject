@@ -5,9 +5,10 @@
   require_once("class/Categoria.php");
 
   function insereProduto($conexao, Produto $produto){
-    $query = "insert into produtos (nome, preco, descricao, categoria_id, usado) values ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}', {$produto->categoria->id}, {$produto->usado})";
-    $resultadoDaInsercao = mysqli_query($conexao, $query);
-    return $resultadoDaInsercao;
+    $query = "insert into produtos (nome, preco, descricao, categoria_id, usado)
+                            values ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}',
+                                        {$produto->categoria->id}, {$produto->usado})";
+    return mysqli_query($conexao, $query);    
   }
 
   function alteraProduto($conexao, Produto $produto){
