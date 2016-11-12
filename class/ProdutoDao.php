@@ -9,17 +9,35 @@
     }
 
     function insereProduto(Produto $produto){
-      $query = "insert into produtos (nome, preco, descricao, categoria_id, usado)
+
+      $isbn = "";
+      if ($produto->temIsbn()) {
+        $isbn = $produto->getIsbn();
+      }
+
+      $tipoProduto = get_class($produto);
+
+      $query = "insert into produtos (nome, preco, descricao, categoria_id, usado, isbn, tipoProduto)
                     values ('{$produto->getNome()}', {$produto->getPreco()}, '{$produto->getDescricao()}',
-                          {$produto->getCategoria()->getId()}, {$produto->isUsado()})";
+                          {$produto->getCategoria()->getId()}, {$produto->isUsado()}, '{$isbn}',
+                                '{$tipoProduto}')";
 
       return mysqli_query($this->conexao, $query);
     }
 
     function alteraProduto($produto){
+
+      $isbn = "";
+      if ($produto->temIsbn()) {
+        $produto->setIsbn($isbn);
+      }
+
+      $tipoProduto = get_class($produto);
+
       $query = "update produtos set nome = '{$produto->getNome()}', preco = {$produto->getPreco()},
                     descricao = '{$produto->getDescricao()}', categoria_id = {$produto->getCategoria()->getId()},
-                          usado = {$produto->isUsado()} where id = '{$produto->getId()}'";
+                          usado = {$produto->isUsado()}, isbn = '{$isbn}', tipoProduto = '{$tipoProduto}'
+                                where id = '{$produto->getId()}'";
       return mysqli_query($this->conexao, $query);
     }
 
@@ -39,8 +57,16 @@
         $descricao = $produto_array['descricao'];
         $preco = $produto_array['preco'];
         $usado = $produto_array['usado'];
+        $isbn = $produto_array['isbn'];
+        $tipoProduto = $produto_array['tipoProduto'];
 
-        $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+        if ($tipoProduto == "Livro") {
+          $produto = new Livro($nome, $preco, $descricao, $categoria, $usado);
+          $produto->setIsbn($isbn);
+        } else {
+            $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+        }
+
         $produto->setId($produto_array['id']);
 
         array_push($produtos, $produto);
@@ -61,8 +87,16 @@
       $descricao = $produto_buscado['descricao'];
       $preco = $produto_buscado['preco'];
       $usado = $produto_buscado['usado'];
+      $isbn = $produto_buscado['isbn'];
+      $tipoProduto = $produto_buscado['tipoProduto'];
 
-      $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+      if ($tipoProduto == "Livro") {
+        $produto = new Livro($nome, $preco, $descricao, $categoria, $usado);
+        $produto->setIsbn($isbn);
+      } else {
+        $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+      }
+
       $produto->setId($produto_buscado['id']);
 
       return $produto;

@@ -15,6 +15,13 @@
       <td><?= substr($produto->getDescricao(), 0, 40) ?></td>
       <td><?= $produto->getCategoria()->getNome() ?></td>
       <td>
+        <?php
+          if ($produto->temIsbn()) {
+            echo "ISBN: ".$produto->getisbn();
+          }
+        ?>
+      </td>
+      <td>
         <a class="btn btn-xs btn-info" href="formulario-altera-produto.php?id=<?= $produto->getId() ?>">Alterar</a>
       </td>
       <td>
