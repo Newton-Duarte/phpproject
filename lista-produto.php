@@ -1,6 +1,8 @@
 <?php
   require_once("cabecalho.php");
 ?>
+
+  <h1>Lista de Produtos</h1>
   <table class="table table-striped table-bordered">
 
     <?php
@@ -11,7 +13,7 @@
     <tr>
       <td><?= $produto->getNome() ?></td>
       <td>R$ <?= $produto->getPreco() ?></td>
-      <td>R$ <?= $produto->precoComDesconto(50) ?></td>
+      <td>R$ <?= $produto->calculaImposto() ?></td>
       <td><?= substr($produto->getDescricao(), 0, 40) ?></td>
       <td><?= $produto->getCategoria()->getNome() ?></td>
       <td>

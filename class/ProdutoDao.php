@@ -29,7 +29,7 @@
 
       $isbn = "";
       if ($produto->temIsbn()) {
-        $produto->setIsbn($isbn);
+        $isbn = $produto->getIsbn();
       }
 
       $tipoProduto = get_class($produto);

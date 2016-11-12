@@ -2,7 +2,7 @@
   <input class="form-control" type="text" name="nome" value="<?=$produto->getNome()?>" placeholder="Produto" />
 </div>
 <div class="form-group">
-  <input class="form-control" type="number" name="preco" value="<?=$produto->getPreco()?>" placeholder="Preço" />
+  <input class="form-control" type="number" name="preco" value="<?=$produto->getPreco()?>" placeholder="Preço" step="0.1" />
 </div>
 <div class="checkbox">
   <label>
