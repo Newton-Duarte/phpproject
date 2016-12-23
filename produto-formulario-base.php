@@ -24,20 +24,31 @@
 </div>
 <div class="form-group">
   <select name="tipoProduto" class="form-control">
+    <optgroup label="Livros">
     <?php
-      $tipos = array("Produto", "Livro");
+      $tipos = array("Livro Fisico", "Ebook");
       foreach($tipos as $tipo) :
-        $esseEhOTipo = get_class($produto) == $tipo;
+        $tipoSemEspaco = str_replace(" ", "", $tipo);
+        $esseEhOTipo = get_class($produto) == $tipoSemEspaco;
         $selecaoTipo = $esseEhOTipo ? "selected='selected'" : "";
     ?>
-        <option value="<?=$tipo?>" <?=$selecaoTipo?>><?=$tipo?>
-    <?php
-      endforeach
-    ?>
+    <option value="<?=$tipoSemEspaco?>" <?=$selecaoTipo?>>
+      <?=$tipo?>
+    </option>
+      <?php
+        endforeach
+      ?>
+    </optgroup>
   </select>
 </div>
 <div class="form-group">
   <input class="form-control" type="text" name="isbn" value="<?php if ($produto->temIsbn()) { echo $produto->getIsbn(); } ?>" placeholder="ISBN">
+</div>
+<div class="form-group">
+  <input class="form-control" type="text" name="taxaImpressao" value="<?php if ($produto->temTaxaImpressao()) { echo $produto->getTaxaImpressao(); } ?>" placeholder="Taxa de Impressao">
+</div>
+<div class="form-group">
+  <input class="form-control" type="text" name="waterMark" value="<?php if ($produto->temWaterMark()) { echo $produto->getWaterMark(); } ?>" placeholder="Water Mark">
 </div>
 <div class="form-group">
   <textarea name="descricao" cols="15" rows="3" class="form-control" placeholder="Descrição..."><?=$produto->getDescricao()?></textarea><br/>
