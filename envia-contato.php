@@ -12,11 +12,11 @@
   $mail->Port = 587;
   $mail->SMTPSecure = 'tls';
   $mail->SMTPAuth = true;
-  $mail->Username = "newton_@hotmail.com";
-  $mail->Password = ""; //Colocar a senha do email para enviar.
+  $mail->Username = ""; //Colocar o email que ira enviar o email
+  $mail->Password = ""; //Colocar a senha do email que ira enviar o email
 
   $mail->setFrom("{$email}", "Alura Curso PHP e MYSQL");
-  $mail->addAddress("nduarte1987@gmail.com");
+  $mail->addAddress(""); //Colocar email que vai receber o email enviado
   $mail->Subject = "Email de contato da loja";
   $mail->msgHTML("<html>de: {$nome}<br/>email: {$email}<br/>mensagem: {$mensagem}</html>");
   $mail->AltBody = "de: {$nome}\nemail: {$email}\nmensagem: {$mensagem}";
